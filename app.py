@@ -2415,8 +2415,6 @@ elif page == "Market Mode":
     """)
     if st.session_state.market_week > 1:
         if st.button("Restart Market Simulation"):
-            if st.session_state.market_week > 1:
-    if st.button("Restart Market Simulation"):
 
         log_event(
             "market_simulation_restarted",
