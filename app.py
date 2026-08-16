@@ -3245,7 +3245,7 @@ if st.session_state.market_week >= MAX_WEEKS:
 
 st.rerun()
 
-    else:
+else:
 
         st.success("🏆 The 12-week simulation is complete!")
 
