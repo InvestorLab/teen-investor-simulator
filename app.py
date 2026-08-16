@@ -385,8 +385,7 @@ def reset_game():
 # SIDEBAR
 # -------------------------------------------------
 
-st.sidebar.title("Investor Lab")
-st.sidebar.caption("Learn • Practice • Simulate")
+st.sidebar.image("investor_lab_logo.png", width=220)
 
 sidebar_options = [
     "Home",
@@ -431,7 +430,6 @@ if page == "LOCKED - Level 3: Diversification":
 # -------------------------------------------------
 
 if page == "Home":
-    st.image("investor_lab_logo.png", width=260)
     st.title("Teen Investor Simulator")
     st.write("Learn investing by making decisions in real historical markets.")
 
