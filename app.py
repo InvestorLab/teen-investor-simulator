@@ -324,11 +324,14 @@ if "analytics_session_id" not in st.session_state:
 
 def log_event(event_name, event_value=None):
     try:
-        response = supabase.table("events").insert({
-            "session_id": st.session_state.analytics_session_id,
-            "event_name": event_name,
-            "event_value": event_value
-        }).execute()
+        response = supabase.table("events").insert(
+    {
+        "session_id": st.session_state.analytics_session_id,
+        "event_name": event_name,
+        "event_value": event_value
+    },
+    returning="minimal"
+).execute()
 
         st.success("Analytics event saved")
 
