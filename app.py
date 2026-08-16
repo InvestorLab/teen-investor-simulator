@@ -333,11 +333,10 @@ def log_event(event_name, event_value=None):
     returning="minimal"
 ).execute()
 
-        st.success("Analytics event saved")
+    
 
     except Exception as e:
-        st.error(f"Analytics error: {e}")
-
+        print("Analytics error:", e)
 # -------------------------------------------------
 # DOWNLOAD HISTORICAL DATA
 # -------------------------------------------------
@@ -1006,6 +1005,7 @@ elif page == "Learn: FOMO":
             st.success("🎉 3/3 — Great job!")
 
             st.session_state.module2_complete = True
+            log_event("module_completed", "FOMO & Emotional Investing")
 
         elif score == 2:
 
@@ -1306,6 +1306,7 @@ elif page == "Learn: Diversification":
             st.success("🎉 4/4 — Great job!")
 
             st.session_state.module3_complete = True
+            log_event("module_completed", "Diversification & Risk")
 
         elif score == 2:
 
@@ -1555,6 +1556,7 @@ elif page == "Learn: Researching a Company":
             st.success("🎉 3/3 — Great job!")
 
             st.session_state.module4_complete = True
+            log_event("module_completed", "Researching a Company")
 
         elif score == 2:
 
@@ -1833,6 +1835,7 @@ elif page == "Learn: News & Markets":
             st.success("🎉 3/3 — Great job!")
 
             st.session_state.module5_complete = True
+            log_event("module_completed", "News & Markets")
 
         elif score == 2:
 
@@ -1966,6 +1969,7 @@ elif page == "Level 1: The Crash":
                     st.session_state.risk_awareness -= 1
 
                 st.session_state.level1_complete = True
+                log_event("level_completed", "Survive the Crash")
 
                 clamp_scores()
 
@@ -2152,6 +2156,7 @@ elif page == "Level 2: FOMO":
                     st.session_state.fomo_resistance += 2
 
                 st.session_state.level2_complete = True
+                log_event("level_completed", "Fight the FOMO")
 
                 clamp_scores()
 
@@ -2330,6 +2335,7 @@ elif page == "Level 3: Diversification":
                     st.session_state.risk_awareness += 2
 
                 st.session_state.level3_complete = True
+                log_event("level_completed", "Diversification Challenge")
 
                 clamp_scores()
 
@@ -2409,6 +2415,17 @@ elif page == "Market Mode":
     """)
     if st.session_state.market_week > 1:
         if st.button("Restart Market Simulation"):
+            if st.session_state.market_week > 1:
+    if st.button("Restart Market Simulation"):
+
+        log_event(
+            "market_simulation_restarted",
+            f"Restarted during week {st.session_state.market_week}"
+        )
+
+        st.session_state.market_week = 1
+        st.session_state.market_cash = 10000.0
+        st.session_state.trade_history = []
             st.session_state.market_week = 1
             st.session_state.market_cash = 10000.0
             st.session_state.trade_history = []
@@ -3228,7 +3245,10 @@ elif page == "Market Mode":
 
             st.session_state.market_week += 1
 
-            st.rerun()
+if st.session_state.market_week >= MAX_WEEKS:
+    log_event("market_simulation_completed", "12 weeks")
+
+st.rerun()
 
     else:
 
