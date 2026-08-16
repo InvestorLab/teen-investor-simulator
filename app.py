@@ -2,6 +2,8 @@ import streamlit as st
 import yfinance as yf
 import pandas as pd
 import copy
+import uuid
+from supabase import create_client
 
 # -------------------------------------------------
 # PAGE SETUP
@@ -307,7 +309,28 @@ default_values = {
 for key, value in default_values.items():
     if key not in st.session_state:
         st.session_state[key] = value
+# -------------------------------------------------
+# ANALYTICS
+# -------------------------------------------------
 
+supabase = create_client(
+    st.secrets["SUPABASE_URL"],
+    st.secrets["SUPABASE_KEY"]
+)
+
+if "analytics_session_id" not in st.session_state:
+    st.session_state.analytics_session_id = str(uuid.uuid4())
+
+
+def log_event(event_name, event_value=None):
+    try:
+        supabase.table("events").insert({
+            "session_id": st.session_state.analytics_session_id,
+            "event_name": event_name,
+            "event_value": event_value
+        }).execute()
+    except Exception as e:
+        print("Analytics error:", e)
 
 # -------------------------------------------------
 # DOWNLOAD HISTORICAL DATA
@@ -777,7 +800,7 @@ if page == "Learn: Market Crashes":
         if score == 2:
             st.success("🎉 2/2 — Great job!")
             st.session_state.module1_complete = True
-
+            log_event("module_completed", "Market Crashes")
         elif score == 1:
             st.warning("You got 1/2. Review the lesson and try again.")
 
