@@ -766,7 +766,7 @@ if page == "Learn: Market Crashes":
 
     st.divider()
 
-    st.header("🧠 Quick Quiz")
+    st.header("Quick Quiz")
 
     q1 = st.radio(
         "1. Your $1,000 investment falls to $750. What is the approximate decline?",
@@ -947,7 +947,7 @@ elif page == "Learn: FOMO":
     # QUIZ
     # -------------------------------------------------
 
-    st.header("🧠 Quick Quiz")
+    st.header("Quick Quiz")
 
     q1 = st.radio(
         "1. Which situation is the best example of FOMO?",
@@ -1498,7 +1498,7 @@ elif page == "Learn: Researching a Company":
     # QUIZ
     # -------------------------------------------------
 
-    st.header("🧠 Quick Quiz")
+    st.header("Quick Quiz")
 
     q1 = st.radio(
         "1. What does revenue growth measure?",
@@ -1777,7 +1777,7 @@ elif page == "Learn: News & Markets":
     # QUIZ
     # -------------------------------------------------
 
-    st.header("🧠 Quick Quiz")
+    st.header("Quick Quiz")
 
     q1 = st.radio(
         "1. Interest rates suddenly rise. Which company may be especially vulnerable because of its high debt?",
