@@ -3242,11 +3242,11 @@ elif page == "Market Mode":
 
 if st.session_state.market_week >= MAX_WEEKS:
     log_event("market_simulation_completed", "12 weeks")
+    st.rerun()
 
-st.rerun()
+
 
 else:
-
         st.success("🏆 The 12-week simulation is complete!")
 
         final_value = st.session_state.market_history[-1]
