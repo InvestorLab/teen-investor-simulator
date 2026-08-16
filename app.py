@@ -2416,18 +2416,15 @@ elif page == "Market Mode":
     if st.session_state.market_week > 1:
         if st.button("Restart Market Simulation"):
 
-        log_event(
-            "market_simulation_restarted",
-            f"Restarted during week {st.session_state.market_week}"
-        )
+            log_event(
+                "market_simulation_restarted",
+                f"Restarted during week {st.session_state.market_week}"
+            )
 
-        st.session_state.market_week = 1
-        st.session_state.market_cash = 10000.0
-        st.session_state.trade_history = []
             st.session_state.market_week = 1
             st.session_state.market_cash = 10000.0
             st.session_state.trade_history = []
-
+         
             st.session_state.market_prices = {
                 "TechCore": 100.0,
                 "GreenGrid": 80.0,
