@@ -3240,7 +3240,6 @@ elif page == "Market Mode":
 
             st.session_state.market_week += 1
 
- st.session_state.market_week += 1
 
             if st.session_state.market_week >= MAX_WEEKS:
                 log_event("market_simulation_completed", "12 weeks")
