@@ -431,7 +431,7 @@ if page == "LOCKED - Level 3: Diversification":
 # -------------------------------------------------
 
 if page == "Home":
-
+    st.image("investor_lab_logo.png", width=260)
     st.title("Teen Investor Simulator")
     st.write("Learn investing by making decisions in real historical markets.")
 
