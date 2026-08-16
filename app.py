@@ -385,7 +385,7 @@ def reset_game():
 # SIDEBAR
 # -------------------------------------------------
 
-st.sidebar.image("investor_lab_logo.png", width=220)
+st.sidebar.image("investor_lab_logo.png", width=260)
 
 sidebar_options = [
     "Home",
