@@ -324,13 +324,16 @@ if "analytics_session_id" not in st.session_state:
 
 def log_event(event_name, event_value=None):
     try:
-        supabase.table("events").insert({
+        response = supabase.table("events").insert({
             "session_id": st.session_state.analytics_session_id,
             "event_name": event_name,
             "event_value": event_value
         }).execute()
+
+        st.success("Analytics event saved")
+
     except Exception as e:
-        print("Analytics error:", e)
+        st.error(f"Analytics error: {e}")
 
 # -------------------------------------------------
 # DOWNLOAD HISTORICAL DATA
