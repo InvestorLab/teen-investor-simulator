@@ -3747,81 +3747,13 @@ if full_program_complete:
     st.subheader("Help Improve Investor Lab")
 
     st.write(
-        "You've completed Investor Lab! This anonymous 60-second survey "
-        "helps us understand what students are learning and how we can improve."
+        "You've completed Investor Lab! This short, anonymous survey takes about "
+        "60 seconds and helps us understand what you learned and how we can improve "
+        "Investor Lab for future students."
     )
 
-    with st.form("feedback_form"):
-
-        before_confidence = st.radio(
-            "Before using Investor Lab, how confident were you in your understanding of investing?",
-            [1, 2, 3, 4, 5],
-            horizontal=True,
-            help="1 = Not confident at all • 5 = Very confident"
-        )
-
-        after_confidence = st.radio(
-            "After using Investor Lab, how confident are you in your understanding of investing?",
-            [1, 2, 3, 4, 5],
-            horizontal=True,
-            help="1 = Not confident at all • 5 = Very confident"
-        )
-
-        improvement = st.radio(
-            "How much did Investor Lab improve your understanding of investing?",
-            [
-                "A lot",
-                "Somewhat",
-                "A little",
-                "Not at all"
-            ]
-        )
-
-        most_helpful = st.radio(
-            "Which part of Investor Lab helped you learn the most?",
-            [
-                "Learning modules",
-                "Historical market scenarios",
-                "Market simulation",
-                "Investor Profile",
-                "Other"
-            ]
-        )
-
-        feedback_text = st.text_area(
-            "What is one thing you learned or one thing you would change?",
-            placeholder="Optional"
-        )
-
-        submitted = st.form_submit_button(
-            "Submit Feedback",
-            type="primary",
-            use_container_width=True
-        )
-
-    if submitted:
-
-        try:
-
-            supabase.table("feedback").insert({
-                "session_id": st.session_state.analytics_session_id,
-                "before_confidence": before_confidence,
-                "after_confidence": after_confidence,
-                "improvement": improvement,
-                "most_helpful": most_helpful,
-                "feedback_text": feedback_text
-            }).execute()
-
-            st.success(
-                "Thanks for your feedback! Your response helps improve Investor Lab."
-            )
-
-            log_event("feedback_submitted")
-
-        except Exception as e:
-
-            st.error(
-                "Your feedback could not be submitted. Please try again."
-            )
-
-            print("Feedback error:", e)
+    st.link_button(
+        "Give Feedback",
+        "https://docs.google.com/forms/d/e/1FAIpQLSe6Fsha-k_3h86lTEXJs0e9OM5bKglFaD72gNHCeUapdRFjzg/viewform?usp=dialog",
+        use_container_width=True
+    )
