@@ -1954,7 +1954,6 @@ elif page == "Level 1: The Crash":
             You don't know what will happen next.
             """
         )
-
         choice1 = st.radio(
             "What do you do?",
             [
