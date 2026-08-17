@@ -3599,7 +3599,7 @@ elif page == "Investor Profile":
             and st.session_state.diversification <= 4
         ):
 
-            investor_type = "🔥 The Momentum Chaser"
+            investor_type = "The Momentum Chaser"
 
             description = (
                 "You are attracted to exciting investments "
@@ -3611,7 +3611,7 @@ elif page == "Investor Profile":
             and st.session_state.long_term_thinking >= 7
         ):
 
-            investor_type = "🧠 The Calm Long-Term Investor"
+            investor_type = "The Calm Long-Term Investor"
 
             description = (
                 "You tend to stay patient during volatility "
@@ -3623,7 +3623,7 @@ elif page == "Investor Profile":
             and st.session_state.risk_awareness >= 7
         ):
 
-            investor_type = "🛡️ The Risk-Aware Diversifier"
+            investor_type = "The Risk-Aware Diversifier"
 
             description = (
                 "You think carefully about downside risk "
@@ -3632,7 +3632,7 @@ elif page == "Investor Profile":
 
         elif average_score >= 7:
 
-            investor_type = "📈 The Disciplined Investor"
+            investor_type = "The Disciplined Investor"
 
             description = (
                 "You generally make balanced and thoughtful decisions."
@@ -3640,7 +3640,7 @@ elif page == "Investor Profile":
 
         else:
 
-            investor_type = "🌱 The Developing Investor"
+            investor_type = "The Developing Investor"
 
             description = (
                 "You're still developing your investing habits "
