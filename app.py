@@ -1955,7 +1955,7 @@ elif page == "Level 1: The Crash":
             """
         )
 
-     choice1 = st.radio(
+        choice1 = st.radio(
             "What do you do?",
             [
                 "Sell everything",
@@ -1965,16 +1965,16 @@ elif page == "Level 1: The Crash":
             key="level1_radio"
         )
 
-choice1_reason = st.radio(
-    "What is the main reason for your decision?",
-    [
-        "The market is falling quickly and I'm worried about losing more money.",
-        "I believe the reason I originally invested is still valid.",
-        "I believe something fundamental about the investment has changed.",
-        "My financial situation or ability to take risk has changed."
-    ],
-    key="level1_reason_radio"
-)
+        choice1_reason = st.radio(
+            "What is the main reason for your decision?",
+            [
+                "The market is falling quickly and I'm worried about losing more money.",
+                "I believe the reason I originally invested is still valid.",
+                "I believe something fundamental about the investment has changed.",
+                "My financial situation or ability to take risk has changed."
+            ],
+            key="level1_reason_radio"
+        )
 
 if st.button(
     "Make My Decision",
