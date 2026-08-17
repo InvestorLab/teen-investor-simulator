@@ -1964,7 +1964,7 @@ elif page == "Level 1: The Crash":
             key="level1_radio"
         )
 
-          choice1_reason = st.radio(
+        choice1_reason = st.radio(
             "What is the main reason for your decision?",
             [
                 "The market is falling quickly and I'm worried about losing more money.",
