@@ -2014,7 +2014,7 @@ elif page == "Level 1: The Crash":
 
                 clamp_scores()
 
-if st.session_state.level1_complete:
+        if st.session_state.level1_complete:
 
     choice = st.session_state.choice1
     reason = st.session_state.choice1_reason
