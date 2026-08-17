@@ -3517,21 +3517,21 @@ elif page == "Market Mode":
         # -----------------------------------------
 
         if (
-            st.session_state.module1_complete
-            and st.session_state.level1_complete
-            and st.session_state.level2_complete
-            and st.session_state.level3_complete
-            and st.session_state.market_week >= 12
-        ):
-
-            if (
-                "Investor Lab Graduate"
-                not in st.session_state.achievements
-            ):
-
+                st.session_state.module1_complete
+                and st.session_state.module2_complete
+                and st.session_state.module3_complete
+                and st.session_state.module4_complete
+                and st.session_state.module5_complete
+                and st.session_state.level1_complete
+                and st.session_state.level2_complete
+                and st.session_state.level3_complete
+                and st.session_state.market_week >= 12
+):
+                if "Investor Lab Graduate" not in st.session_state.achievements:
                 st.session_state.achievements.append(
-                    "Investor Lab Graduate"
-                )
+                "Investor Lab Graduate"
+        )
+                
 
         # -----------------------------------------
         # FINAL SCORE
