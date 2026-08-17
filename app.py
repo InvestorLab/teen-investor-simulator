@@ -437,7 +437,25 @@ if page == "Home":
         "Learn investing through interactive lessons, real historical market "
         "scenarios, and a simulated portfolio (without risking real money)."
     )
+ # progress stuff
+    # achievements stuff
 
+    st.divider()
+
+    st.subheader("About Investor Lab")
+
+    st.write(
+        """
+        Investor Lab is a student-created financial literacy project designed to help
+        teenagers learn investing through experience rather than memorization.
+
+        Students learn core investing concepts, make decisions during real historical
+        market events, and apply what they learn in an interactive market simulation,
+        without getting lost in complicated financial jargon.
+
+        Investor Lab is free to use and is designed for educational purposes only.
+        """
+    )
     # -------------------------------------------------
     # PROGRESSION SYSTEM
     # -------------------------------------------------
@@ -684,27 +702,6 @@ if page == "Home":
             )
 
     st.divider()
-st.title("Investor Lab: Teen Investor Simulator")
-
-st.write(
-    "Learn investing through interactive lessons, real historical market "
-    "scenarios, and a simulated portfolio — without risking real money."
-)
-st.divider()
-
-st.subheader("About Investor Lab")
-
-st.write(
-    """
-    Investor Lab is a student-created financial literacy project designed to help
-    teenagers learn investing through experience rather than memorization.
-
-    Students learn core investing concepts, make decisions during real historical
-    market events, and apply what they learn in an interactive market simulation, without getting lost in complicated financial jargon.
-
-    Investor Lab is free to use and is designed for educational purposes only.
-    """
-)
 # -------------------------------------------------
 # MODULE 1 — MARKET CRASHES
 # -------------------------------------------------
