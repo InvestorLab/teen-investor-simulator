@@ -2014,34 +2014,34 @@ elif page == "Level 1: The Crash":
 
                 clamp_scores()
 
-        if st.session_state.level1_complete:
+          if st.session_state.level1_complete:
 
-    choice = st.session_state.choice1
-    reason = st.session_state.choice1_reason
+            choice = st.session_state.choice1
+            reason = st.session_state.choice1_reason
 
-    st.divider()
+            st.divider()
 
-    st.header("Your Decision")
+            st.header("Your Decision")
 
-    st.write(f"**You chose:** {choice}")
-    st.write(f"**Your reason:** {reason}")
+            st.write(f"**You chose:** {choice}")
+            st.write(f"**Your reason:** {reason}")
 
-    # -----------------------------------------
-    # REASONING FEEDBACK
-    # -----------------------------------------
+            # -----------------------------------------
+            # REASONING FEEDBACK
+            # -----------------------------------------
 
-    if reason == "The market is falling quickly and I'm worried about losing more money.":
+            if reason == "The market is falling quickly and I'm worried about losing more money.":
 
-        st.warning(
-            """
-            Your decision appears to be driven mainly by the market decline itself.
+                st.warning(
+                    """
+                    Your decision appears to be driven mainly by the market decline itself.
 
-            Falling prices can feel frightening, but price movement alone does not
-            necessarily tell you whether an investment is still worth owning.
+                    Falling prices can feel frightening, but price movement alone does not
+                    necessarily tell you whether an investment is still worth owning.
 
-            A better question is whether the reason you originally invested has changed.
-            """
-        )
+                    A better question is whether the reason you originally invested has changed.
+                    """
+                )
 
     elif reason == "I believe the reason I originally invested is still valid.":
 
