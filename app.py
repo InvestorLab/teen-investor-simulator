@@ -269,6 +269,7 @@ default_values = {
 "module5_complete": False,
 "module5_score": 0,
     "choice1": None,
+    "choice1_reason": None,
     "choice2": None,
     "choice3": None,
     "trade_history": [],
@@ -1954,138 +1955,200 @@ elif page == "Level 1: The Crash":
             """
         )
 
-        choice1 = st.radio(
-            "What do you do?",
-            [
-                "Sell everything",
-                "Hold",
-                "Invest another $1,000"
-            ],
-            key="level1_radio"
+      choice1 = st.radio(
+    "What do you do?",
+    [
+        "Sell everything",
+        "Hold",
+        "Invest another $1,000"
+    ],
+    key="level1_radio"
+)
+
+choice1_reason = st.radio(
+    "What is the main reason for your decision?",
+    [
+        "The market is falling quickly and I'm worried about losing more money.",
+        "I believe the reason I originally invested is still valid.",
+        "I believe something fundamental about the investment has changed.",
+        "My financial situation or ability to take risk has changed."
+    ],
+    key="level1_reason_radio"
+)
+
+if st.button(
+    "Make My Decision",
+    key="level1_button"
+):
+
+    if not st.session_state.level1_complete:
+
+        st.session_state.choice1 = choice1
+        st.session_state.choice1_reason = choice1_reason
+
+        # -----------------------------------------
+        # SCORE THE REASONING
+        # -----------------------------------------
+
+        if choice1_reason == "The market is falling quickly and I'm worried about losing more money.":
+            st.session_state.panic_resistance -= 2
+            st.session_state.long_term_thinking -= 1
+
+        elif choice1_reason == "I believe the reason I originally invested is still valid.":
+            st.session_state.panic_resistance += 2
+            st.session_state.long_term_thinking += 2
+
+        elif choice1_reason == "I believe something fundamental about the investment has changed.":
+            st.session_state.risk_awareness += 2
+
+        elif choice1_reason == "My financial situation or ability to take risk has changed.":
+            st.session_state.risk_awareness += 2
+
+        # Buying more adds additional risk even if the reasoning is sound
+        if choice1 == "Invest another $1,000":
+            st.session_state.risk_awareness -= 1
+
+        st.session_state.level1_complete = True
+
+        log_event(
+            "level_completed",
+            f"Survive the Crash | {choice1} | {choice1_reason}"
         )
 
-        if st.button(
-            "Make My Decision",
-            key="level1_button"
-        ):
+        clamp_scores()
 
-            if not st.session_state.level1_complete:
 
-                st.session_state.choice1 = choice1
+if st.session_state.level1_complete:
 
-                if choice1 == "Sell everything":
+    choice = st.session_state.choice1
+    reason = st.session_state.choice1_reason
 
-                    st.session_state.panic_resistance -= 2
-                    st.session_state.long_term_thinking -= 1
+    st.divider()
 
-                elif choice1 == "Hold":
+    st.header("Your Decision")
 
-                    st.session_state.panic_resistance += 2
-                    st.session_state.long_term_thinking += 1
+    st.write(f"**You chose:** {choice}")
+    st.write(f"**Your reason:** {reason}")
 
-                elif choice1 == "Invest another $1,000":
+    # -----------------------------------------
+    # REASONING FEEDBACK
+    # -----------------------------------------
 
-                    st.session_state.panic_resistance += 2
-                    st.session_state.risk_awareness -= 1
+    if reason == "The market is falling quickly and I'm worried about losing more money.":
 
-                st.session_state.level1_complete = True
-                log_event("level_completed", "Survive the Crash")
+        st.warning(
+            """
+            Your decision appears to be driven mainly by the market decline itself.
 
-                clamp_scores()
+            Falling prices can feel frightening, but price movement alone does not
+            necessarily tell you whether an investment is still worth owning.
 
-        if st.session_state.level1_complete:
+            A better question is whether the reason you originally invested has changed.
+            """
+        )
 
-            choice = st.session_state.choice1
+    elif reason == "I believe the reason I originally invested is still valid.":
 
-            st.divider()
+        st.success(
+            """
+            You're focusing on the reason you invested rather than reacting only
+            to short-term price movement.
 
-            st.header("What Happened Next?")
+            That does not guarantee the investment will recover, but it is a more
+            disciplined way to evaluate a market decline.
+            """
+        )
 
-            sell_value = crash_value
-            hold_value = end_value
+    elif reason == "I believe something fundamental about the investment has changed.":
 
-            extra_shares = 1000 / crash_price
+        st.info(
+            """
+            Reconsidering an investment because something fundamental has changed
+            can be reasonable.
 
-            buy_more_value = (
-                shares + extra_shares
-            ) * end_price
+            Selling after a decline is not automatically a mistake. What matters is
+            whether your investment thesis has changed, rather than simply reacting
+            to falling prices.
+            """
+        )
 
-            if choice == "Sell everything":
+    elif reason == "My financial situation or ability to take risk has changed.":
 
-                st.error(
-                    f"You sold and finished with about ${sell_value:,.0f}."
-                )
+        st.info(
+            """
+            Your own financial situation matters.
 
-                missed_gain = (
-                    hold_value - sell_value
-                )
+            Even if an investment still looks attractive, reducing risk can be reasonable
+            if you need the money sooner or can no longer tolerate the potential loss.
+            """
+        )
 
-                st.write(
-                    f"""
-                    By selling during the crash, you locked in the decline.
+    st.divider()
 
-                    Had you simply held until the end of 2020,
-                    your original investment would have been worth about
-                    **${hold_value:,.0f}**.
+    st.header("What Happened Historically?")
 
-                    That's roughly **${missed_gain:,.0f} more**.
-                    """
-                )
+    sell_value = crash_value
+    hold_value = end_value
 
-            elif choice == "Hold":
+    extra_shares = 1000 / crash_price
 
-                st.success(
-                    f"You held. By year-end your investment was worth about ${hold_value:,.0f}."
-                )
+    buy_more_value = (
+        shares + extra_shares
+    ) * end_price
 
-                st.write(
-                    """
-                    You experienced a major temporary loss without
-                    immediately reacting to it.
-                    """
-                )
+    if choice == "Sell everything":
 
-            elif choice == "Invest another $1,000":
+        st.metric(
+            "Value After Selling",
+            f"${sell_value:,.0f}"
+        )
 
-                st.success(
-                    f"By year-end your portfolio was worth about ${buy_more_value:,.0f}."
-                )
+    elif choice == "Hold":
 
-                st.write(
-                    """
-                    Your additional investment benefited from the recovery,
-                    but buying during declines also requires accepting
-                    additional risk.
-                    """
-                )
+        st.metric(
+            "Value by the End of 2020",
+            f"${hold_value:,.0f}"
+        )
 
-            st.subheader("Compare All Three Decisions")
+    elif choice == "Invest another $1,000":
 
-            col1, col2, col3 = st.columns(3)
+        st.metric(
+            "Value by the End of 2020",
+            f"${buy_more_value:,.0f}"
+        )
 
-            col1.metric(
-                "Sell",
-                f"${sell_value:,.0f}"
-            )
+    st.subheader("Compare All Three Decisions")
 
-            col2.metric(
-                "Hold",
-                f"${hold_value:,.0f}"
-            )
+    col1, col2, col3 = st.columns(3)
 
-            col3.metric(
-                "Buy More",
-                f"${buy_more_value:,.0f}"
-            )
+    col1.metric(
+        "Sell",
+        f"${sell_value:,.0f}"
+    )
 
-            st.info(
-                """
-                **Lesson:** A falling market doesn't automatically mean
-                selling is the best decision.
+    col2.metric(
+        "Hold",
+        f"${hold_value:,.0f}"
+    )
 
-                Panic selling can turn a temporary decline into a permanent loss.
-                """
-            )
+    col3.metric(
+        "Buy More",
+        f"${buy_more_value:,.0f}"
+    )
+
+    st.info(
+        """
+        **Historical outcome:** During the 2020 crash, the market eventually recovered,
+        so holding or investing more produced a higher year-end value than selling
+        during the decline.
+
+        But knowing what happened afterward does not mean those choices were guaranteed
+        to be correct at the time.
+
+        **The key lesson is to evaluate why you are making a decision, not simply react
+        to whether prices are rising or falling.**
+        """
+    )
 
     except Exception as e:
 
