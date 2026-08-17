@@ -321,6 +321,9 @@ supabase = create_client(
 
 if "analytics_session_id" not in st.session_state:
     st.session_state.analytics_session_id = str(uuid.uuid4())
+if "session_logged" not in st.session_state:
+    log_event("session_started")
+    st.session_state.session_logged = True
 
 
 def log_event(event_name, event_value=None):
@@ -455,6 +458,7 @@ if page == "Home":
         type="primary",
         use_container_width=True
     ):
+        log_event("program_started")
         st.session_state.pending_page = "Learn: Market Crashes"
         st.rerun()
  # progress stuff
@@ -2491,6 +2495,9 @@ elif page == "Level 3: Diversification":
 
 elif page == "Market Mode":
     MAX_WEEKS = 12
+if "market_started_logged" not in st.session_state:
+        log_event("market_simulation_started")
+        st.session_state.market_started_logged = True
 
 
     import random
@@ -3809,6 +3816,9 @@ full_program_complete = (
     and st.session_state.level3_complete
     and st.session_state.market_week >= 12
 )
+if full_program_complete and "program_complete_logged" not in st.session_state:
+    log_event("program_completed")
+    st.session_state.program_complete_logged = True
 
 if full_program_complete:
 
