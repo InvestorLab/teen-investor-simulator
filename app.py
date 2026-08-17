@@ -414,8 +414,12 @@ sidebar_options.append("Investor Profile")
 
 if "nav_page" not in st.session_state:
     st.session_state.nav_page = "Home"
-def start_learning():
-    st.session_state.nav_page = "Learn: Market Crashes"
+
+if "nav_page" not in st.session_state:
+    st.session_state.nav_page = "Home"
+if "pending_page" in st.session_state:
+    st.session_state.nav_page = st.session_state.pending_page
+    del st.session_state.pending_page
 
 if "nav_page" not in st.session_state:
     st.session_state.nav_page = "Home"
@@ -445,12 +449,13 @@ if page == "Home":
         "Learn investing through interactive lessons, real historical market "
         "scenarios, and a simulated portfolio (without risking real money)."
     )
+
     if st.button(
         "Start Learning →",
         type="primary",
         use_container_width=True
-):
-        st.session_state.nav_page = "Learn: Market Crashes"
+    ):
+        st.session_state.pending_page = "Learn: Market Crashes"
         st.rerun()
  # progress stuff
     # achievements stuff
