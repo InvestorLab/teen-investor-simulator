@@ -414,7 +414,11 @@ sidebar_options.append("Investor Profile")
 
 if "nav_page" not in st.session_state:
     st.session_state.nav_page = "Home"
+def start_learning():
+    st.session_state.nav_page = "Learn: Market Crashes"
 
+if "nav_page" not in st.session_state:
+    st.session_state.nav_page = "Home"
 page = st.sidebar.radio(
     "Choose a section",
     sidebar_options,
