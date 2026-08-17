@@ -3528,9 +3528,9 @@ elif page == "Market Mode":
                 and st.session_state.market_week >= 12
 ):
                 if "Investor Lab Graduate" not in st.session_state.achievements:
-                st.session_state.achievements.append(
-                "Investor Lab Graduate"
-        )
+                    st.session_state.achievements.append(
+                    "Investor Lab Graduate"
+        )    
                 
 
         # -----------------------------------------
