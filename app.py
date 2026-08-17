@@ -1981,42 +1981,44 @@ elif page == "Level 1: The Crash":
              key="level1_button"
 ):
 
-    if not st.session_state.level1_complete:
+    if st.button(
+            "Make My Decision",
+            key="level1_button"
+        ):
 
-        st.session_state.choice1 = choice1
-        st.session_state.choice1_reason = choice1_reason
+            if not st.session_state.level1_complete:
 
-        # -----------------------------------------
-        # SCORE THE REASONING
-        # -----------------------------------------
+                st.session_state.choice1 = choice1
+                st.session_state.choice1_reason = choice1_reason
 
-        if choice1_reason == "The market is falling quickly and I'm worried about losing more money.":
-            st.session_state.panic_resistance -= 2
-            st.session_state.long_term_thinking -= 1
+                # -----------------------------------------
+                # SCORE THE REASONING
+                # -----------------------------------------
 
-        elif choice1_reason == "I believe the reason I originally invested is still valid.":
-            st.session_state.panic_resistance += 2
-            st.session_state.long_term_thinking += 2
+                if choice1_reason == "The market is falling quickly and I'm worried about losing more money.":
+                    st.session_state.panic_resistance -= 2
+                    st.session_state.long_term_thinking -= 1
 
-        elif choice1_reason == "I believe something fundamental about the investment has changed.":
-            st.session_state.risk_awareness += 2
+                elif choice1_reason == "I believe the reason I originally invested is still valid.":
+                    st.session_state.panic_resistance += 2
+                    st.session_state.long_term_thinking += 2
 
-        elif choice1_reason == "My financial situation or ability to take risk has changed.":
-            st.session_state.risk_awareness += 2
+                elif choice1_reason == "I believe something fundamental about the investment has changed.":
+                    st.session_state.risk_awareness += 2
 
-        # Buying more adds additional risk even if the reasoning is sound
-        if choice1 == "Invest another $1,000":
-            st.session_state.risk_awareness -= 1
+                elif choice1_reason == "My financial situation or ability to take risk has changed.":
+                    st.session_state.risk_awareness += 2
 
-        st.session_state.level1_complete = True
+                if choice1 == "Invest another $1,000":
+                    st.session_state.risk_awareness -= 1
 
-        log_event(
-            "level_completed",
-            f"Survive the Crash | {choice1} | {choice1_reason}"
-        )
+                st.session_state.level1_complete = True
+                log_event(
+                    "level_completed",
+                    f"Survive the Crash | {choice1} | {choice1_reason}"
+                )
 
-        clamp_scores()
-
+                clamp_scores()
 
 if st.session_state.level1_complete:
 
