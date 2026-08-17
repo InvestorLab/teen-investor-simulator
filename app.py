@@ -2231,7 +2231,7 @@ elif page == "Level 2: FOMO":
 
 elif page == "Level 3: Diversification":
 
-    st.title("🌐 Level 3: Don't Put All Your Eggs in One Basket")
+    st.title("Level 3: Don't Put All Your Eggs in One Basket")
 
     st.write(
         """
