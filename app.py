@@ -321,9 +321,6 @@ supabase = create_client(
 
 if "analytics_session_id" not in st.session_state:
     st.session_state.analytics_session_id = str(uuid.uuid4())
-if "session_logged" not in st.session_state:
-    log_event("session_started")
-    st.session_state.session_logged = True
 
 
 def log_event(event_name, event_value=None):
@@ -341,6 +338,9 @@ def log_event(event_name, event_value=None):
 
     except Exception as e:
         print("Analytics error:", e)
+if "session_logged" not in st.session_state:
+    log_event("session_started")
+    st.session_state.session_logged = True
 # -------------------------------------------------
 # DOWNLOAD HISTORICAL DATA
 # -------------------------------------------------
