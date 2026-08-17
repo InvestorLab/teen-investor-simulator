@@ -436,7 +436,6 @@ if page == "Home":
     # -------------------------------------------------
     # PROGRESSION SYSTEM
     # -------------------------------------------------
-
     st.subheader("Your Progress")
 
     completed_steps = 0
