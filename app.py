@@ -2080,7 +2080,7 @@ elif page == "Level 1: The Crash":
 
 elif page == "Level 2: FOMO":
 
-    st.title("🔥 Level 2: The Hot Stock")
+    st.title("Level 2: The Hot Stock")
 
     st.write(
         """
@@ -2117,7 +2117,7 @@ elif page == "Level 2: FOMO":
         ) * 100
 
         st.warning(
-            "🔥 Everyone seems to be buying TSLA."
+            "Everyone seems to be buying TSLA."
         )
 
         choice2 = st.radio(
