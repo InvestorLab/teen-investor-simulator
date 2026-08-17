@@ -412,11 +412,14 @@ sidebar_options.append("Market Mode")
 
 sidebar_options.append("Investor Profile")
 
+if "nav_page" not in st.session_state:
+    st.session_state.nav_page = "Home"
+
 page = st.sidebar.radio(
     "Choose a section",
-    sidebar_options
+    sidebar_options,
+    key="nav_page"
 )
-
 if page == "LOCKED - Level 2: FOMO":
     st.title("Level 2: FOMO")
     st.warning("Complete Level 1 first to unlock this level.")
@@ -438,6 +441,13 @@ if page == "Home":
         "Learn investing through interactive lessons, real historical market "
         "scenarios, and a simulated portfolio (without risking real money)."
     )
+    if st.button(
+        "Start Learning →",
+        type="primary",
+        use_container_width=True
+):
+        st.session_state.nav_page = "Learn: Market Crashes"
+        st.rerun()
  # progress stuff
     # achievements stuff
 
