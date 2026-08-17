@@ -1976,10 +1976,6 @@ elif page == "Level 1: The Crash":
             key="level1_reason_radio"
         )
 
-        if st.button(
-            "Make My Decision",
-             key="level1_button"
-):
 
     if st.button(
             "Make My Decision",
