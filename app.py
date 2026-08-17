@@ -1977,11 +1977,10 @@ elif page == "Level 1: The Crash":
         )
 
 
-    if st.button(
+       if st.button(
             "Make My Decision",
             key="level1_button"
         ):
-
             if not st.session_state.level1_complete:
 
                 st.session_state.choice1 = choice1
