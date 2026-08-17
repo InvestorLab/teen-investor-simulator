@@ -1965,7 +1965,7 @@ elif page == "Level 1: The Crash":
             key="level1_radio"
         )
 
-        choice1_reason = st.radio(
+          choice1_reason = st.radio(
             "What is the main reason for your decision?",
             [
                 "The market is falling quickly and I'm worried about losing more money.",
@@ -1976,11 +1976,11 @@ elif page == "Level 1: The Crash":
             key="level1_reason_radio"
         )
 
-
-       if st.button(
+        if st.button(
             "Make My Decision",
             key="level1_button"
         ):
+
             if not st.session_state.level1_complete:
 
                 st.session_state.choice1 = choice1
