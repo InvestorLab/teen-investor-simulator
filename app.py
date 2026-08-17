@@ -1937,7 +1937,7 @@ elif page == "Level 1: The Crash":
             crash_value / starting_money - 1
         ) * 100
 
-        st.error("🚨 MARKET CRASH")
+        st.error("MARKET CRASH")
 
         st.metric(
             "Your Portfolio",
