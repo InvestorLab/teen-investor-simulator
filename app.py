@@ -1955,15 +1955,15 @@ elif page == "Level 1: The Crash":
             """
         )
 
-      choice1 = st.radio(
-    "What do you do?",
-    [
-        "Sell everything",
-        "Hold",
-        "Invest another $1,000"
-    ],
-    key="level1_radio"
-)
+     choice1 = st.radio(
+            "What do you do?",
+            [
+                "Sell everything",
+                "Hold",
+                "Invest another $1,000"
+            ],
+            key="level1_radio"
+        )
 
 choice1_reason = st.radio(
     "What is the main reason for your decision?",
