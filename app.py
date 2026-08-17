@@ -1928,7 +1928,6 @@ elif page == "Level 1: The Crash":
         )
 
         starting_money = 10000
-
         shares = starting_money / start_price
 
         crash_value = shares * crash_price
@@ -1954,6 +1953,7 @@ elif page == "Level 1: The Crash":
             You don't know what will happen next.
             """
         )
+
         choice1 = st.radio(
             "What do you do?",
             [
@@ -1985,10 +1985,6 @@ elif page == "Level 1: The Crash":
                 st.session_state.choice1 = choice1
                 st.session_state.choice1_reason = choice1_reason
 
-                # -----------------------------------------
-                # SCORE THE REASONING
-                # -----------------------------------------
-
                 if choice1_reason == "The market is falling quickly and I'm worried about losing more money.":
                     st.session_state.panic_resistance -= 2
                     st.session_state.long_term_thinking -= 1
@@ -2007,6 +2003,7 @@ elif page == "Level 1: The Crash":
                     st.session_state.risk_awareness -= 1
 
                 st.session_state.level1_complete = True
+
                 log_event(
                     "level_completed",
                     f"Survive the Crash | {choice1} | {choice1_reason}"
@@ -2014,7 +2011,7 @@ elif page == "Level 1: The Crash":
 
                 clamp_scores()
 
-          if st.session_state.level1_complete:
+        if st.session_state.level1_complete:
 
             choice = st.session_state.choice1
             reason = st.session_state.choice1_reason
@@ -2025,10 +2022,6 @@ elif page == "Level 1: The Crash":
 
             st.write(f"**You chose:** {choice}")
             st.write(f"**Your reason:** {reason}")
-
-            # -----------------------------------------
-            # REASONING FEEDBACK
-            # -----------------------------------------
 
             if reason == "The market is falling quickly and I'm worried about losing more money.":
 
@@ -2043,108 +2036,108 @@ elif page == "Level 1: The Crash":
                     """
                 )
 
-    elif reason == "I believe the reason I originally invested is still valid.":
+            elif reason == "I believe the reason I originally invested is still valid.":
 
-        st.success(
-            """
-            You're focusing on the reason you invested rather than reacting only
-            to short-term price movement.
+                st.success(
+                    """
+                    You're focusing on the reason you invested rather than reacting only
+                    to short-term price movement.
 
-            That does not guarantee the investment will recover, but it is a more
-            disciplined way to evaluate a market decline.
-            """
-        )
+                    That does not guarantee the investment will recover, but it is a more
+                    disciplined way to evaluate a market decline.
+                    """
+                )
 
-    elif reason == "I believe something fundamental about the investment has changed.":
+            elif reason == "I believe something fundamental about the investment has changed.":
 
-        st.info(
-            """
-            Reconsidering an investment because something fundamental has changed
-            can be reasonable.
+                st.info(
+                    """
+                    Reconsidering an investment because something fundamental has changed
+                    can be reasonable.
 
-            Selling after a decline is not automatically a mistake. What matters is
-            whether your investment thesis has changed, rather than simply reacting
-            to falling prices.
-            """
-        )
+                    Selling after a decline is not automatically a mistake. What matters is
+                    whether your investment thesis has changed, rather than simply reacting
+                    to falling prices.
+                    """
+                )
 
-    elif reason == "My financial situation or ability to take risk has changed.":
+            elif reason == "My financial situation or ability to take risk has changed.":
 
-        st.info(
-            """
-            Your own financial situation matters.
+                st.info(
+                    """
+                    Your own financial situation matters.
 
-            Even if an investment still looks attractive, reducing risk can be reasonable
-            if you need the money sooner or can no longer tolerate the potential loss.
-            """
-        )
+                    Even if an investment still looks attractive, reducing risk can be reasonable
+                    if you need the money sooner or can no longer tolerate the potential loss.
+                    """
+                )
 
-    st.divider()
+            st.divider()
 
-    st.header("What Happened Historically?")
+            st.header("What Happened Historically?")
 
-    sell_value = crash_value
-    hold_value = end_value
+            sell_value = crash_value
+            hold_value = end_value
 
-    extra_shares = 1000 / crash_price
+            extra_shares = 1000 / crash_price
 
-    buy_more_value = (
-        shares + extra_shares
-    ) * end_price
+            buy_more_value = (
+                shares + extra_shares
+            ) * end_price
 
-    if choice == "Sell everything":
+            if choice == "Sell everything":
 
-        st.metric(
-            "Value After Selling",
-            f"${sell_value:,.0f}"
-        )
+                st.metric(
+                    "Value After Selling",
+                    f"${sell_value:,.0f}"
+                )
 
-    elif choice == "Hold":
+            elif choice == "Hold":
 
-        st.metric(
-            "Value by the End of 2020",
-            f"${hold_value:,.0f}"
-        )
+                st.metric(
+                    "Value by the End of 2020",
+                    f"${hold_value:,.0f}"
+                )
 
-    elif choice == "Invest another $1,000":
+            elif choice == "Invest another $1,000":
 
-        st.metric(
-            "Value by the End of 2020",
-            f"${buy_more_value:,.0f}"
-        )
+                st.metric(
+                    "Value by the End of 2020",
+                    f"${buy_more_value:,.0f}"
+                )
 
-    st.subheader("Compare All Three Decisions")
+            st.subheader("Compare All Three Decisions")
 
-    col1, col2, col3 = st.columns(3)
+            col1, col2, col3 = st.columns(3)
 
-    col1.metric(
-        "Sell",
-        f"${sell_value:,.0f}"
-    )
+            col1.metric(
+                "Sell",
+                f"${sell_value:,.0f}"
+            )
 
-    col2.metric(
-        "Hold",
-        f"${hold_value:,.0f}"
-    )
+            col2.metric(
+                "Hold",
+                f"${hold_value:,.0f}"
+            )
 
-    col3.metric(
-        "Buy More",
-        f"${buy_more_value:,.0f}"
-    )
+            col3.metric(
+                "Buy More",
+                f"${buy_more_value:,.0f}"
+            )
 
-    st.info(
-        """
-        **Historical outcome:** During the 2020 crash, the market eventually recovered,
-        so holding or investing more produced a higher year-end value than selling
-        during the decline.
+            st.info(
+                """
+                **Historical outcome:** During the 2020 crash, the market eventually recovered,
+                so holding or investing more produced a higher year-end value than selling
+                during the decline.
 
-        But knowing what happened afterward does not mean those choices were guaranteed
-        to be correct at the time.
+                But knowing what happened afterward does not mean those choices were guaranteed
+                to be correct at the time.
 
-        **The key lesson is to evaluate why you are making a decision, not simply react
-        to whether prices are rising or falling.**
-        """
-    )
+                **The key lesson is to evaluate why you are making a decision, not simply react
+                to whether prices are rising or falling.**
+                """
+            )
 
     except Exception as e:
 
@@ -2153,7 +2146,6 @@ elif page == "Level 1: The Crash":
         )
 
         st.write(e)
-
 
 # -------------------------------------------------
 # LEVEL 2
