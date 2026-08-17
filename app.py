@@ -3781,7 +3781,8 @@ if full_program_complete:
                 "Learning modules",
                 "Historical market scenarios",
                 "Market simulation",
-                "Investor Profile"
+                "Investor Profile",
+                "Other"
             ]
         )
 
