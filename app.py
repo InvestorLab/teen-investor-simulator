@@ -430,12 +430,18 @@ if page == "LOCKED - Level 3: Diversification":
 # -------------------------------------------------
 
 if page == "Home":
-  st.title("Investor Lab: Teen Investor Simulator")
-  st.write("Learn investing through interactive lessons, real historical market "
-    "scenarios, and a simulated portfolio (without risking real money).")
+
+    st.title("Investor Lab: Teen Investor Simulator")
+
+    st.write(
+        "Learn investing through interactive lessons, real historical market "
+        "scenarios, and a simulated portfolio (without risking real money)."
+    )
+
     # -------------------------------------------------
     # PROGRESSION SYSTEM
     # -------------------------------------------------
+
     st.subheader("Your Progress")
 
     completed_steps = 0
