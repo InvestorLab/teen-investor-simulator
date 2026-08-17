@@ -2494,16 +2494,16 @@ elif page == "Level 3: Diversification":
         st.write(e)
 
 elif page == "Market Mode":
-    MAX_WEEKS = 12
-if "market_started_logged" not in st.session_state:
+
+    if "market_started_logged" not in st.session_state:
         log_event("market_simulation_started")
         st.session_state.market_started_logged = True
 
+    MAX_WEEKS = 12
 
     import random
 
     st.title("Simulated Market")
-
     st.write("""
     Manage a portfolio of fictional companies in a changing economy.
 
